@@ -21,6 +21,10 @@ const itemSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  subCategory: {
+    type: String,
+    required: true,
+  },
   color: {
     type: String,
   },
@@ -34,6 +38,7 @@ const itemSchema = new mongoose.Schema({
     minHumidity: Number,
     maxUvIndex: Number,
     minUvIndex: Number,
+    maxWind: Number,
     precipType: String,
     precipIntensity: String,
   }],
