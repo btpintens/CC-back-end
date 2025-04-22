@@ -11,7 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^5.4.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.5.0",
-    "mongoose": "^8.13.2"
+    "mongoose": "^8.13.2",
+    "morgan": "^1.10.0"
   }
 }

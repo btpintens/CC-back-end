@@ -24,7 +24,7 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 11,
       minUvIndex: 3,
       maxWind: 10,
-      precipType: "none",
+      precipType: "none", // Must not be worn in rain or snow
       precipIntensity: "none",
     },
     "Long Sleeve": {
@@ -68,7 +68,7 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 10,
       minUvIndex: 0,
       maxWind: 15,
-      precipType: "none",
+      precipType: "none", // Must not be worn in rain or snow
       precipIntensity: "none",
     },
     "Blouse": {
@@ -136,7 +136,7 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 11,
       minUvIndex: 3,
       maxWind: 15,
-      precipType: "none",
+      precipType: "none", // Must not be worn in rain or snow
       precipIntensity: "none",
     },
   
@@ -184,7 +184,7 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 11,
       minUvIndex: 3,
       maxWind: 10,
-      precipType: "none",
+      precipType: "none", // Must not be worn in rain or snow
       precipIntensity: "none",
     },
     "Midi": {
@@ -195,7 +195,7 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 10,
       minUvIndex: 0,
       maxWind: 15,
-      precipType: "none",
+      precipType: "none", // Must not be worn in rain or snow
       precipIntensity: "none",
     },
     "Maxi": {
@@ -287,7 +287,7 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 11,
       minUvIndex: 3,
       maxWind: 15,
-      precipType: "none",
+      precipType: "none", // Must not be worn in rain or snow
       precipIntensity: "none",
     },
     "Boot": {
@@ -333,7 +333,7 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 8,
       minUvIndex: 0,
       maxWind: 15,
-      precipType: "none",
+      precipType: "none", // Must not be worn in rain or snow
       precipIntensity: "none",
     }
   };
