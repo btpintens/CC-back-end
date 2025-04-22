@@ -25,6 +25,10 @@ app.get('/', (req, res) => {
   res.send('🌤️ Cloud Closet API is running');
 });
 
+import authRoutes from './routes/auth.js';
+app.use('/auth', authRoutes);
+
+
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
