@@ -31,6 +31,10 @@ const itemSchema = new mongoose.Schema({
   imageUrl: {
     type: String,
   },
+  image: {
+    data: Buffer,
+    contentType: String
+  },
   weatherType: [{
     maxTemp: Number,
     minTemp: Number,
