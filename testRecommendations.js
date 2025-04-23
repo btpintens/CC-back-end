@@ -21,7 +21,7 @@ const sampleWeatherData = {
     "last_updated_epoch": 1745350200,
     "last_updated": "2025-04-22 15:30",
     "temp_c": 4.4, // Adjusted for 40°F
-    "temp_f": 40.0, // Cool early spring day with rain
+    "temp_f": 0.0, // Cool early spring day with rain
     "is_day": 1,
     "condition": {
       "text": "Light Rain",
@@ -34,9 +34,9 @@ const sampleWeatherData = {
     "wind_dir": "W",
     "pressure_mb": 1014.0,
     "pressure_in": 29.94,
-    "precip_mm": 2.3, // Light rain
-    "precip_in": 0.09,
-    "humidity": 75, // Higher humidity due to rain
+    "precip_mm": 0.0, // Light rain
+    "precip_in": 0.0,
+    "humidity": 60, // Higher humidity due to rain
     "cloud": 80,
     "feelslike_c": 1.2, // Feels colder due to rain
     "feelslike_f": 34.2,
