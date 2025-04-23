@@ -6,7 +6,7 @@
 const subCategoryWeatherTypes = {
     // Shirt subcategories
     "T-Shirt": {
-      maxTemp: 95,
+      maxTemp: 120,
       minTemp: 65,
       maxHumidity: 100,
       minHumidity: 0,
@@ -17,7 +17,7 @@ const subCategoryWeatherTypes = {
       precipIntensity: "none",
     },
     "Tank Top": {
-      maxTemp: 100,
+      maxTemp: 120,
       minTemp: 75,
       maxHumidity: 100,
       minHumidity: 0,
@@ -28,8 +28,8 @@ const subCategoryWeatherTypes = {
       precipIntensity: "none",
     },
     "Long Sleeve": {
-      maxTemp: 75,
-      minTemp: 45,
+      maxTemp: 70,
+      minTemp: 25,
       maxHumidity: 80,
       minHumidity: 0,
       maxUvIndex: 7,
@@ -39,8 +39,8 @@ const subCategoryWeatherTypes = {
       precipIntensity: "none",
     },
     "Turtleneck": {
-      maxTemp: 65,
-      minTemp: 32,
+      maxTemp: 60,
+      minTemp: 20,
       maxHumidity: 70,
       minHumidity: 0,
       maxUvIndex: 5,
@@ -50,8 +50,8 @@ const subCategoryWeatherTypes = {
       precipIntensity: "none",
     },
     "Button-up": {
-      maxTemp: 85,
-      minTemp: 55,
+      maxTemp: 105,
+      minTemp: 20,
       maxHumidity: 90,
       minHumidity: 0,
       maxUvIndex: 9,
@@ -72,8 +72,8 @@ const subCategoryWeatherTypes = {
       precipIntensity: "none",
     },
     "Blouse": {
-      maxTemp: 85,
-      minTemp: 60,
+      maxTemp: 95,
+      minTemp: 40,
       maxHumidity: 90,
       minHumidity: 0,
       maxUvIndex: 9,
@@ -86,36 +86,36 @@ const subCategoryWeatherTypes = {
     // Pants subcategories
     "Jeans": {
       maxTemp: 80,
-      minTemp: 32,
+      minTemp: -20,
       maxHumidity: 85,
       minHumidity: 0,
       maxUvIndex: 11,
       minUvIndex: 0,
       maxWind: 30,
       precipType: "any",
-      precipIntensity: "light",
+      precipIntensity: "heavy",
     },
     "Khakis": {
       maxTemp: 85,
-      minTemp: 50,
+      minTemp: 40,
       maxHumidity: 80,
       minHumidity: 0,
       maxUvIndex: 9,
       minUvIndex: 0,
       maxWind: 20,
-      precipType: "none",
-      precipIntensity: "none",
+      precipType: "any",
+      precipIntensity: "moderate",
     },
     "Trousers": {
       maxTemp: 75,
-      minTemp: 45,
+      minTemp: -20,
       maxHumidity: 75,
       minHumidity: 0,
       maxUvIndex: 8,
       minUvIndex: 0,
       maxWind: 25,
-      precipType: "none",
-      precipIntensity: "none",
+      precipType: "any",
+      precipIntensity: "light",
     },
     "Leggings": {
       maxTemp: 75,
@@ -125,12 +125,12 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 8,
       minUvIndex: 0,
       maxWind: 20,
-      precipType: "none",
-      precipIntensity: "none",
+      precipType: "rain",
+      precipIntensity: "light",
     },
     "Shorts": {
       maxTemp: 100,
-      minTemp: 70,
+      minTemp: 65,
       maxHumidity: 100,
       minHumidity: 0,
       maxUvIndex: 11,
@@ -143,14 +143,14 @@ const subCategoryWeatherTypes = {
     // Sweater subcategories
     "Cardigan": {
       maxTemp: 70,
-      minTemp: 45,
+      minTemp: 20,
       maxHumidity: 80,
       minHumidity: 0,
       maxUvIndex: 7,
       minUvIndex: 0,
       maxWind: 20,
-      precipType: "none",
-      precipIntensity: "none",
+      precipType: "snow",
+      precipIntensity: "heavy",
     },
     "Lightweight": {
       maxTemp: 75,
@@ -165,19 +165,19 @@ const subCategoryWeatherTypes = {
     },
     "Turtleneck Sweater": {
       maxTemp: 60,
-      minTemp: 30,
+      minTemp: -20,
       maxHumidity: 75,
       minHumidity: 0,
       maxUvIndex: 6,
       minUvIndex: 0,
       maxWind: 25,
-      precipType: "any",
-      precipIntensity: "light",
+      precipType: "snow",
+      precipIntensity: "heavy",
     },
   
     // Skirt subcategories
     "Mini": {
-      maxTemp: 95,
+      maxTemp: 125,
       minTemp: 70,
       maxHumidity: 95,
       minHumidity: 0,
@@ -206,13 +206,13 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 9,
       minUvIndex: 0,
       maxWind: 20,
-      precipType: "light",
+      precipType: "rain",
       precipIntensity: "light",
     },
   
     // Dress subcategories
     "Mini Dress": {
-      maxTemp: 95,
+      maxTemp: 125,
       minTemp: 70,
       maxHumidity: 95,
       minHumidity: 0,
@@ -241,7 +241,7 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 9,
       minUvIndex: 0,
       maxWind: 20,
-      precipType: "light",
+      precipType: "rain",
       precipIntensity: "light",
     },
     "Sleeveless": {
@@ -258,14 +258,14 @@ const subCategoryWeatherTypes = {
   
     // Shoes subcategories
     "Tennis Shoes": {
-      maxTemp: 100,
-      minTemp: 32,
+      maxTemp: 130,
+      minTemp: 25,
       maxHumidity: 100,
       minHumidity: 0,
       maxUvIndex: 11,
       minUvIndex: 0,
       maxWind: 30,
-      precipType: "any",
+      precipType: "rain",
       precipIntensity: "moderate",
     },
     "Loafer": {
@@ -280,7 +280,7 @@ const subCategoryWeatherTypes = {
       precipIntensity: "none",
     },
     "Sandal": {
-      maxTemp: 100,
+      maxTemp: 130,
       minTemp: 70,
       maxHumidity: 100,
       minHumidity: 0,
@@ -292,7 +292,7 @@ const subCategoryWeatherTypes = {
     },
     "Boot": {
       maxTemp: 65,
-      minTemp: 0,
+      minTemp: -20,
       maxHumidity: 100,
       minHumidity: 0,
       maxUvIndex: 7,
@@ -305,7 +305,7 @@ const subCategoryWeatherTypes = {
     // Jacket subcategories
     "Winter": {
       maxTemp: 45,
-      minTemp: -10,
+      minTemp: -20,
       maxHumidity: 100,
       minHumidity: 0,
       maxUvIndex: 5,
@@ -323,7 +323,7 @@ const subCategoryWeatherTypes = {
       minUvIndex: 0,
       maxWind: 30,
       precipType: "rain",
-      precipIntensity: "moderate",
+      precipIntensity: "heavy",
     },
     "Blazer": {
       maxTemp: 80,
