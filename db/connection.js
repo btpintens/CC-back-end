@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import chalk from 'chalk';
+
 import "dotenv/config";
 
 mongoose.set("returnOriginal", false);
