@@ -320,7 +320,7 @@ const getClothingRecommendations = async (weatherData, userId) => {
       return true;
     });
     
-    // Group items by category
+    // Group items by category and simplify the output
     const outfitOptions = {
       Shirt: [],
       Pants: [],
@@ -333,7 +333,17 @@ const getClothingRecommendations = async (weatherData, userId) => {
     
     filteredItems.forEach(item => {
       if (outfitOptions[item.category]) {
-        outfitOptions[item.category].push(item);
+        // Simplify the item data to include only the specified fields
+        const simplifiedItem = {
+          _id: item._id,
+          brand: item.brand,
+          name: item.name,
+          subCategory: item.subCategory,
+          color: item.color,
+          imageUrl: item.imageUrl // Keep original field name
+        };
+        
+        outfitOptions[item.category].push(simplifiedItem);
       }
     });
     

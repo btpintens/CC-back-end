@@ -20,37 +20,37 @@ const sampleWeatherData = {
   "current": {
     "last_updated_epoch": 1745350200,
     "last_updated": "2025-04-22 15:30",
-    "temp_c": 18.3, // Nice spring day
-    "temp_f": 65.0, // Pleasant temperate day
+    "temp_c": 7.8, // Chilly spring day
+    "temp_f": 22.0, // Cool temperature - many items will be excluded
     "is_day": 1,
     "condition": {
-      "text": "Sunny",
-      "icon": "//cdn.weatherapi.com/weather/64x64/day/113.png",
-      "code": 1000
+      "text": "Light Rain",
+      "icon": "//cdn.weatherapi.com/weather/64x64/day/296.png",
+      "code": 1183
     },
-    "wind_mph": 5.6,
-    "wind_kph": 9.0,
+    "wind_mph": 12.5, // Moderately windy - will exclude some items
+    "wind_kph": 20.1,
     "wind_degree": 270,
     "wind_dir": "W",
-    "pressure_mb": 1018.0,
-    "pressure_in": 30.06,
-    "precip_mm": 0.0, // No precipitation
-    "precip_in": 0.0,
-    "humidity": 45, // Dry comfortable day
-    "cloud": 5,
-    "feelslike_c": 18.3,
-    "feelslike_f": 65.0,
-    "windchill_c": 18.3,
-    "windchill_f": 65.0,
-    "heatindex_c": 18.3,
-    "heatindex_f": 65.0,
-    "dewpoint_c": 6.4,
-    "dewpoint_f": 43.5,
-    "vis_km": 16.0, // Good visibility
-    "vis_miles": 10.0,
-    "uv": 6.0, // Moderate to high UV index for a sunny day
-    "gust_mph": 8.5,
-    "gust_kph": 13.7
+    "pressure_mb": 1010.0,
+    "pressure_in": 29.83,
+    "precip_mm": 1.5, // Light rain - will exclude items that need dry conditions
+    "precip_in": 0.06,
+    "humidity": 75, // Higher humidity
+    "cloud": 70,
+    "feelslike_c": 5.6, // Feels colder due to wind and rain
+    "feelslike_f": 42.0,
+    "windchill_c": 5.6,
+    "windchill_f": 42.0,
+    "heatindex_c": 7.8,
+    "heatindex_f": 46.0,
+    "dewpoint_c": 3.5,
+    "dewpoint_f": 38.3,
+    "vis_km": 8.0, // Reduced visibility due to rain
+    "vis_miles": 5.0,
+    "uv": 3.0, // Lower UV due to clouds and rain
+    "gust_mph": 18.3, // Gusty conditions
+    "gust_kph": 29.5
   }
 };
 
@@ -79,7 +79,7 @@ const testRecommendations = async () => {
       humidity: sampleWeatherData.current.humidity + "%",
       wind: sampleWeatherData.current.wind_mph + " mph",
       uv: sampleWeatherData.current.uv,
-      precipitation: sampleWeatherData.current.precip_mm + " mm (sunny, no precipitation)"
+      precipitation: sampleWeatherData.current.precip_mm + " mm (light rain)"
     });
     
     console.log("\nFetching recommendations...");
