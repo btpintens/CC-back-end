@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import User from '../models/user.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const createToken = (user) => {
   return jwt.sign({ _id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: '7d' });
@@ -27,7 +29,7 @@ export const signup = async (req, res) => {
     res.json({ token });
   } catch (err) {
     console.error(err);
-    res.status(400).json({ error: err.message || 'Signup failed' });
+    res.status(400).json({ error: err.message || 'Sign-up failed' });
   }
 };
 
