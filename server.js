@@ -11,6 +11,8 @@ import './db/connection.js'
 // Import routes
 import authRoutes from './routes/authRoutes.js';
 import apiRoutes from './routes/index.js';
+import closetRoutes from './routes/closet.js';
+
 // Create Express app
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -22,6 +24,7 @@ app.use(logger('dev'));
 
 // Routes
 app.use('/auth', authRoutes);
+app.use('/api/items', closetRoutes);
 app.use('/api', apiRoutes);
 
 // Test route
