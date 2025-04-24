@@ -65,24 +65,32 @@ const isPrecipitationAcceptable = (itemPrecipType, itemPrecipIntensity, currentP
  * @returns {Object} Formatted weather data for comparison
  */
 const formatWeatherData = (weatherData) => {
-  // Extract relevant weather information
-  const temp_f = weatherData.current.temp_f;
-  const humidity = weatherData.current.humidity;
-  const uv = weatherData.current.uv;
-  const wind_mph = weatherData.current.wind_mph;
+  // New format - temperature is already in Fahrenheit
+  const temp_f = weatherData.temperature;
+  const humidity = weatherData.humidity || 50;
+  const uv = weatherData.uv || 5;
+  const wind_mph = weatherData.wind || 5;
   
-  // Determine precipitation type and intensity based on current conditions
+  // Determine precipitation type and intensity based on precip_mm and main
   let precipType = "none";
   let precipIntensity = "none";
   
-  if (weatherData.current.precip_mm > 0) {
-    precipIntensity = weatherData.current.precip_mm < 2.5 ? "light" : 
-                     weatherData.current.precip_mm < 7.6 ? "moderate" : "heavy";
+  // Check if there's precipitation
+  if (weatherData.precip_mm && weatherData.precip_mm > 0) {
+    // Determine intensity based on amount
+    precipIntensity = weatherData.precip_mm < 2.5 ? "light" : 
+                    weatherData.precip_mm < 7.6 ? "moderate" : "heavy";
     
-    // Determine if it's rain or snow based on temperature
-    precipType = temp_f > 32 ? "rain" : "snow";
+    // Determine type based on main and temperature
+    const main = (weatherData.main || "").toLowerCase();
+    
+    if (main.includes("snow") || temp_f <= 32) {
+      precipType = "snow";
+    } else {
+      precipType = "rain";
+    }
   }
-
+  
   return {
     temp_f,
     humidity,
@@ -362,6 +370,10 @@ const getClothingRecommendations = async (weatherData, userId) => {
  */
 export const getWeatherBasedRecommendations = async (req, res) => {
   try {
+    // Debug line - add this to see what's coming in
+    console.log("Request body:", req.body);
+    
+    // If req.body is undefined, this will fail
     const { weatherData, userId } = req.body;
     
     if (!weatherData || !userId) {
@@ -383,6 +395,47 @@ export const getWeatherBasedRecommendations = async (req, res) => {
   }
 };
 
+/**
+ * API endpoint to get clothing recommendations via GET request
+ * @param {Object} req - Express request object with userId as param and weather as query params
+ * @param {Object} res - Express response object
+ * @returns {Object} Recommended clothing items
+ */
+export const getWeatherRecommendationsGet = async (req, res) => {
+  try {
+    // Get userId from route parameter
+    const userId = req.params.userId;
+    
+    if (!userId) {
+      return res.status(400).json({ 
+        error: "userId is required as a URL parameter"
+      });
+    }
+    
+    // Extract weather parameters from query string
+    const weatherData = {
+      temperature: parseFloat(req.query.temperature) || 70,
+      main: req.query.main || "Clear",
+      humidity: parseFloat(req.query.humidity) || 50,
+      wind: parseFloat(req.query.wind) || 5,
+      precip_mm: parseFloat(req.query.precip_mm) || 0,
+      uv: parseFloat(req.query.uv) || 5
+    };
+    
+    // Use the existing getClothingRecommendations function to get recommendations
+    const recommendations = await getClothingRecommendations(weatherData, userId);
+    
+    return res.status(200).json({
+      success: true,
+      recommendations
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error: error.message
+    });
+  }
+};
+
 export default {
-  getWeatherBasedRecommendations
+  getWeatherRecommendationsGet
 };
