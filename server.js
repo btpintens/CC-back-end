@@ -9,7 +9,7 @@ import logger from 'morgan';
 import chalk from 'chalk';
 import './db/connection.js'
 // Import routes
-import authRoutes from './routes/auth.js';
+import authRoutes from './routes/authRoutes.js';
 import apiRoutes from './routes/index.js';
 // Create Express app
 const app = express();
