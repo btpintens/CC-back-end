@@ -24,6 +24,7 @@ app.use(logger('dev'));
 
 // Routes
 app.use('/auth', authRoutes);
+app.use('/api/items', closetRoutes);
 app.use('/api', apiRoutes);
 app.use('/api/items', closetRoutes);
 
