@@ -26,6 +26,7 @@ app.use(logger('dev'));
 app.use('/auth', authRoutes);
 app.use('/api/items', closetRoutes);
 app.use('/api', apiRoutes);
+app.use('/api/items', closetRoutes);
 
 // Test route
 app.get('/', (req, res) => {
