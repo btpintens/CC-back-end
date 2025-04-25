@@ -481,8 +481,58 @@ const addWardrobeItem = async (req, res) => {
   }
 };
 
+// Create a new outfit with rating
+const createOutfit = async (req, res) => {
+  try {
+    const outfitData = req.body;
+    
+    if (!outfitData.userId) {
+      return res.status(400).json({ error: 'User ID is required' });
+    }
+    
+    // Import the Outfit model
+    const { Outfit } = await import('../models/closet.js');
+    
+    // Create the outfit
+    const newOutfit = await Outfit.create(outfitData);
+    
+    res.status(201).json(newOutfit);
+  } catch (error) {
+    console.error('Error creating outfit:', error);
+    res.status(500).json({ error: 'Failed to create outfit' });
+  }
+};
+
+// Get all outfits for a user
+const getUserOutfits = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    
+    if (!userId) {
+      return res.status(400).json({ error: 'User ID is required' });
+    }
+    
+    // Import the Outfit model
+    const { Outfit } = await import('../models/closet.js');
+    
+    // Find outfits for this user
+    const outfits = await Outfit.find({ userId });
+    
+    if (!outfits.length) {
+      return res.status(200).json({ message: 'No outfits found for this user', outfits: [] });
+    }
+    
+    res.status(200).json(outfits);
+  } catch (error) {
+    console.error('Error fetching outfits:', error);
+    res.status(500).json({ error: 'Failed to fetch outfits' });
+  }
+};
+
 export default {
   getWeatherRecommendationsGet,
   getAllWardrobeItems,
-  addWardrobeItem
+  addWardrobeItem,
+  createOutfit,
+  getUserOutfits
 };
