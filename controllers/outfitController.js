@@ -76,7 +76,7 @@ const formatWeatherData = (weatherData) => {
   let precipIntensity = "none";
   
   // Check if there's precipitation
-  if (weatherData.precip_mm && weatherData.precip_mm > 0) {
+  if (weatherData.precip_mm && weatherData.precip_mm > 0.6) {
     // Determine intensity based on amount
     precipIntensity = weatherData.precip_mm < 2.5 ? "light" : 
                     weatherData.precip_mm < 7.6 ? "moderate" : "heavy";
@@ -436,6 +436,53 @@ export const getWeatherRecommendationsGet = async (req, res) => {
   }
 };
 
+// Get all wardrobe items for a user
+const getAllWardrobeItems = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    
+    if (!userId) {
+      return res.status(400).json({ error: 'User ID is required' });
+    }
+
+    const items = await Item.find({ userId });
+    
+    if (!items.length) {
+      return res.status(404).json({ message: 'No wardrobe items found for this user' });
+    }
+    
+    res.json(items);
+  } catch (error) {
+    console.error('Error fetching wardrobe items:', error);
+    res.status(500).json({ error: 'Failed to fetch wardrobe items' });
+  }
+};
+
+// Add a new wardrobe item
+const addWardrobeItem = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const itemData = req.body;
+    
+    if (!userId) {
+      return res.status(400).json({ error: 'User ID is required' });
+    }
+    
+    // Make sure userId is included in the item data
+    itemData.userId = userId;
+    
+    // Create the new item
+    const newItem = await Item.create(itemData);
+    
+    res.status(201).json(newItem);
+  } catch (error) {
+    console.error('Error adding wardrobe item:', error);
+    res.status(500).json({ error: 'Failed to add wardrobe item' });
+  }
+};
+
 export default {
-  getWeatherRecommendationsGet
+  getWeatherRecommendationsGet,
+  getAllWardrobeItems,
+  addWardrobeItem
 };
