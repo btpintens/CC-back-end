@@ -355,6 +355,39 @@ const getClothingRecommendations = async (weatherData, userId) => {
       }
     });
     
+    // Apply additional overarching weather rules
+    
+    // Rule 1: never recommend any jacket if the temperature is above 75F and precipitation is <0.6mm
+    if (formattedWeather.temp_f > 75 && (!weatherData.precip_mm || weatherData.precip_mm < 0.6)) {
+      outfitOptions.Jacket = [];
+    }
+    
+    // Rule 2: never recommend any sweater if the temperature is above 75F
+    if (formattedWeather.temp_f > 75) {
+      outfitOptions.Sweater = [];
+    }
+    
+    // Rule 3: never recommend a Shirt.Turtleneck if the temperature is above 75F
+    if (formattedWeather.temp_f > 75) {
+      outfitOptions.Shirt = outfitOptions.Shirt.filter(shirt => 
+        shirt.subCategory !== 'Turtleneck'
+      );
+    }
+    
+    // Rule 4: never recommend Boots if the temperature is above 80F
+    if (formattedWeather.temp_f > 80) {
+      outfitOptions.Shoes = outfitOptions.Shoes.filter(shoe => 
+        shoe.subCategory !== 'Boot'
+      );
+    }
+    
+    // Rule 5: never recommend raincoats when there's no precipitation
+    if (!weatherData.precip_mm || weatherData.precip_mm === 0) {
+      outfitOptions.Jacket = outfitOptions.Jacket.filter(jacket => 
+        jacket.subCategory !== 'Rain'
+      );
+    }
+    
     return outfitOptions;
   } catch (error) {
     console.error('Error getting clothing recommendations:', error.message);
