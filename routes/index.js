@@ -5,7 +5,7 @@ const router = Router();
 
 
 // GET route for weather-based clothing recommendations
-router.get('/recommendations/:userId', outfitController.getWeatherRecommendationsGet);
+router.get('/recommendations/:userId', outfitController.getWeatherBasedRecommendations);
 
 // GET route for fetching all wardrobe items
 router.get('/wardrobe/:userId', outfitController.getAllWardrobeItems);
