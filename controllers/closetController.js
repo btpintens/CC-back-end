@@ -58,3 +58,51 @@ export const getItemById = async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch item' });
   }
 };
+
+export const updateItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updateData = req.body;
+    
+    if (!id) {
+      return res.status(400).json({ error: 'Item ID is required' });
+    }
+    
+    // Find the item and update it
+    const updatedItem = await Item.findByIdAndUpdate(
+      id,
+      updateData,
+      { new: true, runValidators: true } // returns the updated document & runs schema validators
+    );
+    
+    if (!updatedItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    
+    res.status(200).json(updatedItem);
+  } catch (error) {
+    console.error('Error updating item:', error);
+    res.status(500).json({ error: 'Failed to update item' });
+  }
+};
+
+export const deleteItem = async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    if (!id) {
+      return res.status(400).json({ error: 'Item ID is required' });
+    }
+    
+    const deletedItem = await Item.findByIdAndDelete(id);
+    
+    if (!deletedItem) {
+      return res.status(404).json({ error: 'Item not found' });
+    }
+    
+    res.status(200).json({ message: 'Item deleted successfully', item: deletedItem });
+  } catch (error) {
+    console.error('Error deleting item:', error);
+    res.status(500).json({ error: 'Failed to delete item' });
+  }
+};

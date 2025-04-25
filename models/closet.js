@@ -66,11 +66,19 @@ const outfitSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Item',
   },
+  sweaterId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Item',
+  },
   bottomId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Item',
   },
   shoesId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Item',
+  },
+  jacketId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Item',
   },
