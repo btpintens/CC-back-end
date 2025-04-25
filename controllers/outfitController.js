@@ -76,7 +76,7 @@ const formatWeatherData = (weatherData) => {
   let precipIntensity = "none";
   
   // Check if there's precipitation
-  if (weatherData.precip_mm && weatherData.precip_mm > 0) {
+  if (weatherData.precip_mm && weatherData.precip_mm > 0.6) {
     // Determine intensity based on amount
     precipIntensity = weatherData.precip_mm < 2.5 ? "light" : 
                     weatherData.precip_mm < 7.6 ? "moderate" : "heavy";
