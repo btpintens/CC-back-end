@@ -13,4 +13,10 @@ router.get('/wardrobe/:userId', outfitController.getAllWardrobeItems);
 // POST route for adding a new wardrobe item
 router.post('/wardrobe/:userId', outfitController.addWardrobeItem);
 
+// POST route for creating an outfit
+router.post('/outfits', outfitController.createOutfit);
+
+// GET route for fetching a user's outfits
+router.get('/outfits/:userId', outfitController.getUserOutfits);
+
 export default router; 
