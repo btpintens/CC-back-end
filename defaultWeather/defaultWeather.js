@@ -35,8 +35,8 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 7,
       minUvIndex: 0,
       maxWind: 20,
-      precipType: "none",
-      precipIntensity: "none",
+      precipType: "snow",
+      precipIntensity: "heavy",
     },
     "Turtleneck": {
       maxTemp: 60,
@@ -46,8 +46,8 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 5,
       minUvIndex: 0,
       maxWind: 25,
-      precipType: "none",
-      precipIntensity: "none",
+      precipType: "snow",
+      precipIntensity: "heavy",
     },
     "Button-up": {
       maxTemp: 105,
@@ -57,8 +57,8 @@ const subCategoryWeatherTypes = {
       maxUvIndex: 9,
       minUvIndex: 0,
       maxWind: 20,
-      precipType: "none",
-      precipIntensity: "none",
+      precipType: "snow",
+      precipIntensity: "heavy",
     },
     "Polo": {
       maxTemp: 90,
