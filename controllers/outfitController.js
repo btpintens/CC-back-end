@@ -65,7 +65,6 @@ const isPrecipitationAcceptable = (itemPrecipType, itemPrecipIntensity, currentP
  * @returns {Object} Formatted weather data for comparison
  */
 const formatWeatherData = (weatherData) => {
-  // New format - temperature is already in Fahrenheit
   const temp_f = weatherData.temperature;
   const humidity = weatherData.humidity || 50;
   const uv = weatherData.uv || 5;
@@ -131,10 +130,6 @@ const generateWeatherQuery = (currentWeather) => {
               { $or: [{ maxHumidity: { $gte: currentWeather.humidity } }, { maxHumidity: { $exists: false } }] },
               { $or: [{ minHumidity: { $lte: currentWeather.humidity } }, { minHumidity: { $exists: false } }] },
               
-              // UV range match
-              { $or: [{ maxUvIndex: { $gte: currentWeather.uv } }, { maxUvIndex: { $exists: false } }] },
-              { $or: [{ minUvIndex: { $lte: currentWeather.uv } }, { minUvIndex: { $exists: false } }] },
-              
               // Wind speed match
               { $or: [{ maxWind: { $gte: currentWeather.wind_mph } }, { maxWind: { $exists: false } }] },
               
@@ -181,15 +176,6 @@ const isSubCategoryWeatherMatch = (subCategory, currentWeather) => {
   if (defaultParams.minHumidity && currentWeather.humidity < defaultParams.minHumidity) {
     return false;
   }
-  
-  // UV index check
-  if (defaultParams.maxUvIndex && currentWeather.uv > defaultParams.maxUvIndex) {
-    return false;
-  }
-  if (defaultParams.minUvIndex && currentWeather.uv < defaultParams.minUvIndex) {
-    return false;
-  }
-  
   // Wind check
   if (defaultParams.maxWind && currentWeather.wind_mph > defaultParams.maxWind) {
     return false;
@@ -247,11 +233,7 @@ const getClothingRecommendations = async (weatherData, userId) => {
           if (params.minHumidity && formattedWeather.humidity < params.minHumidity) {
             continue;
           }
-          
-          // UV check - IGNORING UV PARAMETERS AS REQUESTED
-          // if (params.maxUvIndex && formattedWeather.uv > params.maxUvIndex) continue;
-          // if (params.minUvIndex && formattedWeather.uv < params.minUvIndex) continue;
-          
+    
           // Wind check
           if (params.maxWind && formattedWeather.wind_mph > params.maxWind) {
             continue;
@@ -298,14 +280,6 @@ const getClothingRecommendations = async (weatherData, userId) => {
       if (defaultParams.minHumidity && formattedWeather.humidity < defaultParams.minHumidity) {
         return false;
       }
-      
-      // UV index check - IGNORING UV PARAMETERS AS REQUESTED
-      // if (defaultParams.maxUvIndex && formattedWeather.uv > defaultParams.maxUvIndex) {
-      //   return false;
-      // }
-      // if (defaultParams.minUvIndex && formattedWeather.uv < defaultParams.minUvIndex) {
-      //   return false;
-      // }
       
       // Wind check
       if (defaultParams.maxWind && formattedWeather.wind_mph > defaultParams.maxWind) {
