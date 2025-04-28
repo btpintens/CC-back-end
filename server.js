@@ -12,6 +12,7 @@ import './db/connection.js'
 import authRoutes from './routes/authRoutes.js';
 import apiRoutes from './routes/index.js';
 import closetRoutes from './routes/closet.js';
+import userRoutes from './routes/userRoutes.js';
 
 // Create Express app
 const app = express();
@@ -25,6 +26,7 @@ app.use(logger('dev'));
 // Routes
 app.use('/auth', authRoutes);
 app.use('/api/items', closetRoutes);
+app.use('/api/users', userRoutes);
 app.use('/api', apiRoutes);
 
 // Test route
