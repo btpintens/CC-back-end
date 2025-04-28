@@ -68,3 +68,62 @@ export const login = async (req, res) => {
     res.status(500).json({ error: 'Login failed' });
   }
 };
+
+export const getProfile = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    
+    const user = await User.findById(userId);
+    
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error fetching profile:', error);
+    res.status(500).json({ error: 'Failed to fetch profile' });
+  }
+};
+
+export const updateProfile = async (req, res) => {
+  try {
+    const userId = req.user._id;
+    const { username, firstName, lastName, age, gender, password } = req.body;
+    
+    // Prepare update object with only the fields that were provided
+    const updateData = {};
+    if (username) updateData.username = username;
+    if (firstName) updateData.firstName = firstName;
+    if (lastName) updateData.lastName = lastName;
+    if (age !== undefined) updateData.age = age;
+    if (gender) updateData.gender = gender;
+    
+    // Handle password update separately since it needs to be hashed
+    if (password) {
+      updateData.hashedPassword = await bcrypt.hash(password, 10);
+    }
+    
+    // Find user and update
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      updateData,
+      { new: true, runValidators: true }
+    );
+    
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    
+    res.status(200).json(updatedUser);
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    
+    // Handle duplicate username error
+    if (error.code === 11000) {
+      return res.status(400).json({ error: 'Username already exists' });
+    }
+    
+    res.status(500).json({ error: 'Failed to update profile' });
+  }
+};
